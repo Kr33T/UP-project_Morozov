@@ -33,7 +33,7 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         userPhoto = findViewById(R.id.userPhotoIV);
-        new AdapterQuotes.DownloadImageTask((ImageView) userPhoto).execute(OnBoarding.userImage);
+        new AdapterQuotes.getImage((ImageView) userPhoto).execute(OnBoarding.userImage);
 
         userName = findViewById(R.id.userNameTV);
         userName.setText(OnBoarding.nickName);

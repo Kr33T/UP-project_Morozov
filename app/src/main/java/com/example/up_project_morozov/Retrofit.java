@@ -6,5 +6,5 @@ import retrofit2.http.POST;
 
 public interface Retrofit {
     @POST("user/login")
-    Call<UserTableModel> createUser(@Body UserCheck modelSendUser);
+    Call<UserTableModel> createUser(@Body UserCheck userCheck);
 }

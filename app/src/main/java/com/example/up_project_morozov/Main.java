@@ -34,32 +34,31 @@ public class Main extends AppCompatActivity {
     private AdapterFeelings pAdapter2;
     private List<FeelingsModel> listFeeling = new ArrayList<>();
 
-    ImageView imageProfile;
-    TextView textHello;
+    ImageView profileIMG;
+    TextView greetings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView ivProducts = findViewById(R.id.quotesLV);
+        ListView quotesList = findViewById(R.id.quotesLV);
         pAdapter = new AdapterQuotes(Main.this, listQuote);
-        ivProducts.setAdapter(pAdapter);
+        quotesList.setAdapter(pAdapter);
         new GetQuotes().execute();
 
-        RecyclerView rvFeeling = findViewById(R.id.recyclerView);
-        rvFeeling.setHasFixedSize(true);
-        rvFeeling.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
+        RecyclerView recycler = findViewById(R.id.recyclerView);
+        recycler.setHasFixedSize(true);
+        recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         pAdapter2 = new AdapterFeelings(listFeeling, Main.this);
-        rvFeeling.setAdapter(pAdapter2);
+        recycler.setAdapter(pAdapter2);
         new GetFeeling().execute();
 
-        imageProfile = findViewById(R.id.profileIMG);
-        new AdapterQuotes.DownloadImageTask((ImageView) imageProfile).execute(OnBoarding.userImage);
+        profileIMG = findViewById(R.id.profileIMG);
+        new AdapterQuotes.getImage((ImageView) profileIMG).execute(OnBoarding.userImage);
 
-        textHello = findViewById(R.id.greetingsTV);
-        textHello.setText(textHello.getText().toString() + OnBoarding.nickName + "!");
+        greetings = findViewById(R.id.greetingsTV);
+        greetings.setText(greetings.getText().toString() + OnBoarding.nickName + "!");
     }
 
     private class GetQuotes extends AsyncTask<Void, Void, String> {

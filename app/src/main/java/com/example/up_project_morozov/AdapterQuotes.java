@@ -16,27 +16,27 @@ import java.util.List;
 
 public class AdapterQuotes extends BaseAdapter {
     private Context mContext;
-    List<QuotesModel> maskList;
+    List<QuotesModel> quotesModelList;
 
     public AdapterQuotes(Context mContext, List<QuotesModel> maskList) {
         this.mContext = mContext;
-        this.maskList = maskList;
+        this.quotesModelList = maskList;
     }
 
     @Override
     public int getCount() {
-        return maskList.size();
+        return quotesModelList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return maskList.get(i);
+        return quotesModelList.get(i);
     }
 
     @Override
     public long getItemId(int i)
     {
-        return maskList.get(i).getId();
+        return quotesModelList.get(i).getId();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class AdapterQuotes extends BaseAdapter {
         ImageView Image = v.findViewById(R.id.image);
         TextView description = v.findViewById(R.id.tvDescription);
 
-        QuotesModel quoteModel = maskList.get(position);
+        QuotesModel quoteModel = quotesModelList.get(position);
         title.setText(quoteModel.getTitle());
 
         if(quoteModel.getImage().equals("null"))
@@ -57,7 +57,7 @@ public class AdapterQuotes extends BaseAdapter {
         }
         else
         {
-            new DownloadImageTask((ImageView) Image)
+            new getImage((ImageView) Image)
                     .execute(quoteModel.getImage());
         }
 
@@ -65,10 +65,10 @@ public class AdapterQuotes extends BaseAdapter {
         return v;
     }
 
-    public static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    public static class getImage extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
-        public DownloadImageTask(ImageView bmImage) {
+        public getImage(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 

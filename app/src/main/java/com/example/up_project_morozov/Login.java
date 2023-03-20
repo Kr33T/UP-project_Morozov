@@ -27,8 +27,7 @@ public class Login extends AppCompatActivity {
         emailET = findViewById(R.id.emailET);
         passwordET = findViewById(R.id.passwordET);
 
-        SharedPreferences prefs = this.getSharedPreferences(
-                "Date", Context.MODE_PRIVATE);
+        SharedPreferences prefs = this.getSharedPreferences("Date", Context.MODE_PRIVATE);
 
         if(prefs!=null)
         {
@@ -41,7 +40,7 @@ public class Login extends AppCompatActivity {
     {
         if(emailET.getText().toString().equals("") || passwordET.getText().toString().equals(""))
         {
-            Toast.makeText(Login.this, "Все поля должны быть заполнены!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "Проверьте все ли поля вы заполнили", Toast.LENGTH_SHORT).show();
         }
         else
         {
@@ -68,8 +67,7 @@ public class Login extends AppCompatActivity {
                         {
                             if(response.body().getToken() != null)
                             {
-                                SharedPreferences prefs = getSharedPreferences( // Сохранение данных
-                                        "Date", Context.MODE_PRIVATE);
+                                SharedPreferences prefs = getSharedPreferences("Date", Context.MODE_PRIVATE);
                                 prefs.edit().putString("Email", "" + email).apply();
                                 prefs.edit().putString("Avatar", "" + response.body().getAvatar()).apply();
                                 prefs.edit().putString("NickName", "" + response.body().getNickName()).apply();
@@ -103,7 +101,7 @@ public class Login extends AppCompatActivity {
     {
         if(emailET.getText().toString().equals("") || passwordET.getText().toString().equals(""))
         {
-            Toast.makeText(Login.this, "Все поля должны быть заполнены!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Login.this, "Проверьте все ли поля вы заполнили", Toast.LENGTH_SHORT).show();
         }
         else
         {

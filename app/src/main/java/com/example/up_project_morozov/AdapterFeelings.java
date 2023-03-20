@@ -20,11 +20,11 @@ import java.util.List;
 
 public class AdapterFeelings extends RecyclerView.Adapter<AdapterFeelings.ViewHolder> {
 
-    private List<FeelingsModel> dataModalArrayList;
+    private List<FeelingsModel> feelingsModelList;
     private Context context;
 
     public AdapterFeelings(List<FeelingsModel> dataModalArrayList, Context context) {
-        this.dataModalArrayList = dataModalArrayList;
+        this.feelingsModelList = dataModalArrayList;
         this.context = context;
     }
 
@@ -36,7 +36,7 @@ public class AdapterFeelings extends RecyclerView.Adapter<AdapterFeelings.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull AdapterFeelings.ViewHolder holder, int position) {
-        final FeelingsModel modal = dataModalArrayList.get(position);
+        final FeelingsModel modal = feelingsModelList.get(position);
         holder.title.setText(modal.getTitle());
 
         if(modal.getImage().equals("null"))
@@ -45,15 +45,15 @@ public class AdapterFeelings extends RecyclerView.Adapter<AdapterFeelings.ViewHo
         }
         else
         {
-            new AdapterFeelings.DownloadImageTask((ImageView) holder.image)
+            new AdapterFeelings.getImage((ImageView) holder.image)
                     .execute(modal.getImage());
         }
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    private class getImage extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
-        public DownloadImageTask(ImageView bmImage) {
+        public getImage(ImageView bmImage) {
             this.bmImage = bmImage;
         }
 
@@ -77,7 +77,7 @@ public class AdapterFeelings extends RecyclerView.Adapter<AdapterFeelings.ViewHo
 
     @Override
     public int getItemCount() {
-        return dataModalArrayList.size();
+        return feelingsModelList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

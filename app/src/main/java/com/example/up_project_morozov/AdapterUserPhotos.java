@@ -14,27 +14,27 @@ import java.util.List;
 public class AdapterUserPhotos extends BaseAdapter
 {
     private Context mContext;
-    List<UserPhotoModel> maskList;
+    List<UserPhotoModel> userPhotoModelList;
 
     public AdapterUserPhotos(Context mContext, List<UserPhotoModel> maskList) {
         this.mContext = mContext;
-        this.maskList = maskList;
+        this.userPhotoModelList = maskList;
     }
 
     @Override
     public int getCount() {
-        return maskList.size();
+        return userPhotoModelList.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return maskList.get(i);
+        return userPhotoModelList.get(i);
     }
 
     @Override
     public long getItemId(int i)
     {
-        return maskList.get(i).getId();
+        return userPhotoModelList.get(i).getId();
     }
 
     @Override
@@ -43,16 +43,16 @@ public class AdapterUserPhotos extends BaseAdapter
         View v = View.inflate(mContext,R.layout.user_photo_item,null);
 
         ImageView Image = v.findViewById(R.id.photoIV);
-        TextView dateCreate = v.findViewById(R.id.addtimeTV);
+        TextView addTime = v.findViewById(R.id.addtimeTV);
 
-        UserPhotoModel maskProfileImage  = maskList.get(position);
+        UserPhotoModel maskProfileImage  = userPhotoModelList.get(position);
 
         if(maskProfileImage.getImageProfile().exists()){
 
             Bitmap myBitmap = BitmapFactory.decodeFile(maskProfileImage.getImageProfile().getAbsolutePath());
             Image.setImageBitmap(myBitmap);
         }
-        dateCreate.setText(maskProfileImage.getData());
+        addTime.setText(maskProfileImage.getData());
 
         return v;
     }
